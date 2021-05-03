@@ -1,0 +1,14 @@
+{%load static %}
+
+<div class="ui menu">
+  <div class="ui container">
+    <a href={% url 'home' %} class="header item">
+      <img class="logo" class="logo" src= {% static 'img/Logo.png' %} />
+    </a>
+    <div class="right item">
+      <div class="ui item">
+      <a href="{% url 'add_company' %}" class="ui primary button">Add Company</a>
+      </div>
+    </div>
+  </div>
+</div>

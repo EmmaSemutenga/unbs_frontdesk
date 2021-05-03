@@ -1,0 +1,44 @@
+{% extends '_partials/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include '_partials/messages.html' %}
+    <h1 class="ui header">My List of Visiting CUstomers/Companies</h1>
+    
+    {% if companies %}
+    <table class="ui table">
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Address</th>
+                <th>Visit Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies  %}
+            <tr>
+                <td>{{ company.company_name }}</td>
+                <td>{{ company.address }}</td>
+                <td> {{ company.visit_date }}</td>
+                <td>
+                    <a href="#" class="ui button">
+                        <i class="eye icon"></i>
+                    </a>
+                    <a href="#" class="ui button">
+                        <i class="pencil icon"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="ui message">
+        <div class="header">
+            No Companies yet
+        </div>
+        <p>Add <a href="{% url 'add_company' %}">Company</a></p>
+    </div>
+    {% endif %} 
+{% endblock %}
