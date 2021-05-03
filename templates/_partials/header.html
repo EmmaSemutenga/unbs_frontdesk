@@ -6,9 +6,29 @@
       <img class="logo" class="logo" src= {% static 'img/Logo.png' %} />
     </a>
     <div class="right item">
+    {% if request.user.is_authenticated %}
       <div class="ui item">
       <a href="{% url 'add_company' %}" class="ui primary button">Add Company</a>
       </div>
+      <div class="ui simple dropdown item">
+          {{ request.user.username }}<i class="dropdown icon"></i>
+        <div class="menu">
+        <form class="ui large form" method="post" action="{% url 'logout' %}">
+
+          {% csrf_token %}
+         <input class="ui button"
+              type="submit"
+              value="Sign out"
+            />
+          </form>
+        </div>
+      </div>
+      {% else %}
+      <div class="ui item">
+         <a href="{% url 'login' %}" class="ui primary button">Login</a>
+      </div>
+
+      {% endif %}
     </div>
   </div>
 </div>
