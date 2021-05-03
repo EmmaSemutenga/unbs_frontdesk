@@ -3,12 +3,15 @@ from .models import Customer, Feedback
 from .forms import CustomerForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def home(request):
     companies = Customer.objects.all()
     return render(request, 'customer/index.html', { 'companies':companies })
 
+@login_required
 def add_company(request):
     form = CustomerForm()
     if request.method == 'POST':
@@ -43,6 +46,7 @@ def login_user(request):
         return redirect('home')
     return render(request, "customer/login.html")
 
+@login_required
 def logout_user(request):
     if request.method == "POST":
         logout(request)
