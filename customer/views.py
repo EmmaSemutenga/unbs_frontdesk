@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Customer, Feedback
 from .forms import CustomerForm
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def home(request):
