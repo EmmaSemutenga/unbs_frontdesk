@@ -31,6 +31,7 @@ class Customer(models.Model):
     
 
 class Feedback(models.Model):
+    provided_feedback = models.BooleanField(default=False)
     were_you_served = models.BooleanField(default=False)
     reason_or_feedback = models.TextField()
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)

@@ -1,0 +1,10 @@
+{% extends '_partials/base.html' %}
+
+{% block content %}
+<h1 class="ui header">Feedback</h1>
+    <form action="{% url 'add_feedback' customer.pk %}" method="post" class="ui form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add Feedback" class="ui button primary">
+    </form>
+{% endblock %}

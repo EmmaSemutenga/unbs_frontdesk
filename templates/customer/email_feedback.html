@@ -1,0 +1,6 @@
+{% autoescape off %}
+Hi {{ customer.company_name }}
+Please provide feedback about your experince at unbs front desk
+
+http://{{ domain }}{% url 'customer_feedback' uidb64=uid %}
+{% endautoescape %}

@@ -20,8 +20,10 @@ from customer import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name = 'home'),
-    path('add_company', views.add_company, name = 'add_company'),
+    path('add_company/', views.add_company, name = 'add_company'),
     path('login/', views.login_user, name = 'login'),
     path('logout/', views.logout_user, name = 'logout'),
+    path('customer_feedback/<uidb64>/', views.get_customer_feedback, name = 'customer_feedback'),
+    path('add_feedback/<id>/', views.add_feedback, name = 'add_feedback'),
     
 ]
