@@ -11,8 +11,9 @@
             <tr>
                 <th>Company Name</th>
                 <th>Address</th>
+                <th>Contact Person</th>
+                <th>Department Visited</th>
                 <th>Visit Date</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -20,15 +21,9 @@
             <tr>
                 <td>{{ company.company_name }}</td>
                 <td>{{ company.address }}</td>
+                <td>{{ company.contact_person }}</td>
+                <td>{{ company.department_to_vist }}</td>
                 <td> {{ company.visit_date }}</td>
-                <td>
-                    <a href="#" class="ui button">
-                        <i class="eye icon"></i>
-                    </a>
-                    <a href="#" class="ui button">
-                        <i class="pencil icon"></i>
-                    </a>
-                </td>
             </tr>
             {% endfor %}
         </tbody>
