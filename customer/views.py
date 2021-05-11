@@ -13,6 +13,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 import threading
 
+# Will send the email in the background
 class EmailThread(threading.Thread):
     def __init__(self, email):
         self.email = email
@@ -35,12 +36,13 @@ def send_feedback_email(customer, request):
     EmailThread(email).start()
     # email.send()
 
-# Create your views here.
+# goes to home page that has all customers in tabular format
 @login_required
 def home(request):
     companies = Customer.objects.all()
     return render(request, 'customer/index.html', { 'companies':companies })
 
+#will add the customer
 @login_required
 def add_company(request):
     form = CustomerForm()
@@ -63,6 +65,7 @@ def add_company(request):
             return redirect('home')
     return render(request, 'customer/add_company.html', {'form':form, "value":"Add Customer"})
 
+#Will login a user
 def login_user(request):
     if request.method == 'POST':
         context = {'data':request.POST}
@@ -80,6 +83,7 @@ def login_user(request):
         return redirect('home')
     return render(request, "customer/login.html")
 
+# Will logout a user
 @login_required
 def logout_user(request):
     if request.method == "POST":
@@ -87,6 +91,7 @@ def logout_user(request):
         messages.add_message(request, messages.SUCCESS, f"You have successfully logged out")
         return redirect('login')
 
+# get customer to give feedback
 def get_customer_feedback(request, uidb64):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -98,6 +103,7 @@ def get_customer_feedback(request, uidb64):
     if customer:
         return redirect('add_feedback', customer.id)
 
+# Add the feedback to the db
 def add_feedback(request, id):
     customer = Customer.objects.get(pk=id)
     form = FeedbackForm()
